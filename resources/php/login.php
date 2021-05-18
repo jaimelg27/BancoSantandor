@@ -23,7 +23,7 @@ $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 $count = mysqli_num_rows($result);
 
 if ($count == 1) {
-    $_SESSION["login_id"] = $row['DNI'];
+    $_SESSION["login_id"] = $dni;
     header("Location: ../../user/index.html");
 } else {
     ?>
