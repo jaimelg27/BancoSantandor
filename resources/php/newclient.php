@@ -36,7 +36,7 @@ for ($i=0; $i < 10; $i++)
 $password_cifrada=password_hash($password, PASSWORD_DEFAULT, array("cost"=>10));
 
 //Consulta SQL
-$sql= "INSERT INTO clientes VALUES ('$id', '$fname', '$lname', '$adress', '$city', '$postalcode', '$password_cifrada', '$telephonenum', '$email')";
+$sql= "INSERT INTO clientes VALUES ('$id', '$fname', '$lname', '$adress', '$city', '$postalcode', '$password', '$telephonenum', '$email')";
 
 if ($db_connection->query($sql) === TRUE) { ?>
     <script language="javascript" type="text/javascript">
