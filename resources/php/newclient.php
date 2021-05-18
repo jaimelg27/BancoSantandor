@@ -21,6 +21,7 @@ $adress=$_POST['adress'];
 $postalcode=$_POST['postalcode'];
 $city=$_POST['city'];
 $lname=$lname1." ".$lname2;
+$to=$email;
 
 //Generamos la contraseña aleatoria
 $cadena_base =  'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
@@ -34,6 +35,7 @@ for ($i=0; $i < 10; $i++)
 
 $password_cifrada=password_hash($password, PASSWORD_DEFAULT, array("cost"=>10));
 
+//Consulta SQL
 $sql= "INSERT INTO clientes VALUES ('$id', '$fname', '$lname', '$adress', '$city', '$postalcode', '$password_cifrada', '$telephonenum', '$email')";
 
 if ($db_connection->query($sql) === TRUE) { ?>
@@ -49,4 +51,20 @@ if ($db_connection->query($sql) === TRUE) { ?>
     </script>
 <?php
 }
+$db_connection->close();
+
+//Envio Correo Registro
+$headers = "From: no-reply@bancosantandor.jaimelopez.es\r\n";
+$headers .= "Reply to: contacto@bancosantandor.jaimelopez.es\r\n";
+$headers .= "Bcc: contacto@bancosantandor.jaimelopez.es\r\n";
+
+$subject="Su registro en Banco Santandor.";
+
+$body_message="Bienvenido al Banco Santandor."."\n";
+$body_message .="A continuacion le adjuntamos sus datos de acceso a la web:"."\n";
+$body_message .="DNI: ".$id."\n";
+$body_message .="Su contraseña es: ".$password."\n";
+$body_message .="Gracias por confiar en Banco Santandor.";
+
+mail($to, $subject, $body_message, $headers);
 ?>
