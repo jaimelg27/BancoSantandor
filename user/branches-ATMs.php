@@ -63,5 +63,8 @@ if(empty($_SESSION['login_id'])){
     </div>
 </div>
 <center><iframe src="https://www.google.com/maps/d/u/0/embed?mid=18BKolusOesg-PlhiOSZfKakeCyvGWPdE" width="85%" height="600"></iframe></center>
+<footer class="social-footer">
+    <center><p>Banco Santandor 2021-2021©</p></center>
+</footer>
 </body>
 </html>

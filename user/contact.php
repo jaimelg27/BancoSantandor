@@ -100,6 +100,8 @@ if(empty($_SESSION['login_id'])){
         </div>
     </div>
 </div>
-
+<footer class="social-footer">
+    <center><p>Banco Santandor 2021-2021©</p></center>
+</footer>
 </body>
 </html>

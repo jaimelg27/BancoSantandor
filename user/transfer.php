@@ -108,5 +108,8 @@ if (!$db_connection) {
         </div>
     </form>
 </center>
+<footer class="social-footer">
+    <center><p>Banco Santandor 2021-2021©</p></center>
+</footer>
 </body>
 </html>

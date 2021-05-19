@@ -132,5 +132,10 @@ if (!$db_connection) {
             <input type="button" value="Solicitar prestamo" class="btn btn-primary rounded-0 py-2 px-4"
                    style="float: right;">
         </form>
+    </div>
+</div>
+<footer class="social-footer">
+    <center><p>Banco Santandor 2021-2021©</p></center>
+</footer>
 </body>
 </html>
