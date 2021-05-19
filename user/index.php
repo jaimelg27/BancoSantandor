@@ -74,10 +74,10 @@ if (!$db_connection) {
     <div class="pt-5 text-white">
         <header class="py-5 mt-5">
             <h1 class="display-4">Bienvenido <?php
-                $sql="SELECT First_Name from clientes WHERE DNI='$dni'";
+                $sql = "SELECT First_Name from clientes WHERE DNI='$dni'";
                 $resultado = $db_connection->query($sql);
                 $datos = $resultado->fetch_array();
-                echo $datos['First_Name']?></h1>
+                echo $datos['First_Name'] ?></h1>
             <p class="lead mb-0"> Su posición global:
             </p>
         </header>
@@ -98,21 +98,25 @@ if (!$db_connection) {
                 <td align="center"><b>Saldo</b></td>
             </tr>
             <?php
-            while ($datos = $resultado2->fetch_array()){
-            ?>
-            <tr>
-                <td align="center"><b><?php echo $datos["Account_Num"] ?></b></td>
-                <td align="center"><?php echo $datos["Nombre"] ?></td>
-                <td align="center"><?php if ($datos["Saldo"] == null) {
-                        echo 'No hay dinero';
+            while ($datos = $resultado2->fetch_array()) {
+                ?>
+                <tr>
+                    <td align="center"><b><?php echo $datos["Account_Num"] ?></b></td>
+                    <td align="center"><?php echo $datos["Nombre"] ?></td>
+                    <?php if ($datos["Saldo"] == null) {
+                        echo '<td align="center">No hay dinero</td>';
                     } else {
-                        $money=$datos["Saldo"];
+                        $money = $datos["Saldo"];
                         $number = (string)$money;
                         $format_number = str_replace('.', ',', $number);
-                        echo $format_number." €";
-                    } ?></td>
-            </tr>
-            <?php
+                        if ($datos["Saldo"] < 0) {
+                            echo '<td align="center" style="color: red">' . $format_number . " €" . '</td>';
+                        } else {
+                            echo '<td align="center">' . $format_number . " €" . '</td>';
+                        }
+                    } ?>
+                </tr>
+                <?php
             }
             ?>
         </table>
