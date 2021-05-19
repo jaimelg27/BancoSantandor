@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+if(empty($_SESSION['login_id'])){
+    session_start();
+    session_destroy();
+    header("Location: ../login.html");
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -29,14 +40,14 @@
                     class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
             <div id="navbarSupportedContent" class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a href="index.html" class="nav-link text-uppercase font-weight-bold">Inicio
+                    <li class="nav-item"><a href="index.php" class="nav-link text-uppercase font-weight-bold">Inicio
                         </a></li>
-                    <li class="nav-item"><a href="money.html" class="nav-link text-uppercase font-weight-bold">Sacar/Ingresar</a></li>
-                    <li class="nav-item"><a href="transfer.html" class="nav-link text-uppercase font-weight-bold">Transferencias</a></li>
-                    <li class="nav-item"><a href="branches-ATMs.html" class="nav-link text-uppercase font-weight-bold">Oficinas y
+                    <li class="nav-item"><a href="money.php" class="nav-link text-uppercase font-weight-bold">Sacar/Ingresar</a></li>
+                    <li class="nav-item"><a href="transfer.php" class="nav-link text-uppercase font-weight-bold">Transferencias</a></li>
+                    <li class="nav-item"><a href="branches-ATMs.php" class="nav-link text-uppercase font-weight-bold">Oficinas y
                         Cajeros</a>
                     </li>
-                    <li class="nav-item active"><a href="contact.html" class="nav-link text-uppercase font-weight-bold">Contacto<span class="sr-only">(current)</span></a>
+                    <li class="nav-item active"><a href="contact.php" class="nav-link text-uppercase font-weight-bold">Contacto<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item"><a href="../resources/php/logout.php" class="nav-link text-uppercase font-weight-bold">Cerrar Sesión</a>
                     </li>

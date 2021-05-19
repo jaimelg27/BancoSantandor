@@ -8,7 +8,6 @@ $db_connection = mysqli_connect($db_host, $db_user, $db_password, $db_name);
 if (!$db_connection) {
     die('No se ha podido conectar a la base de datos.');
 }
-session_start();
 $username = $_POST['id'];
 $password = $_POST['password'];
 
@@ -23,8 +22,9 @@ $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 $count = mysqli_num_rows($result);
 
 if ($count == 1) {
-    $_SESSION["login_id"] = $dni;
-    header("Location: ../../user/index.html");
+    session_start();
+    $_SESSION['login_id'] = $dni;
+    header("Location: ../../user/index.php");
 } else {
     ?>
     <script language="javascript" type="text/javascript">
