@@ -16,12 +16,10 @@ $password = stripcslashes($password);
 $dni = mysqli_real_escape_string($db_connection, $username);
 $password = mysqli_real_escape_string($db_connection, $password);
 
-$sql = "SELECT * FROM clientes WHERE DNI = '$dni'and Password = '$password'";
-$result = mysqli_query($db_connection, $sql);
-$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-$count = mysqli_num_rows($result);
-
-if ($count == 1) {
+$sql = "SELECT * FROM clientes WHERE DNI = '$dni'";
+$resultado = $db_connection->query($sql);
+$datos=$resultado->fetch_array();
+if (password_verify($password, $datos['Password'])){
     session_start();
     $_SESSION['login_id'] = $dni;
     header("Location: ../../user/index.php");

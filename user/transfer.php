@@ -6,6 +6,19 @@ if(empty($_SESSION['login_id'])){
     session_destroy();
     header("Location: ../login.html");
 }
+
+$dni = $_SESSION['login_id'];
+
+$db_host = "db5002502322.hosting-data.io:3306";
+$db_user = "dbu431085";
+$db_password = "Hormiga2015*";
+$db_name = "dbs1991557";
+$db_table_name = "clientes";
+$db_connection = mysqli_connect($db_host, $db_user, $db_password, $db_name);
+
+if (!$db_connection) {
+    die('No se ha podido conectar a la base de datos: ' . $db_connection->connect_error);
+}
 ?>
 
 <!DOCTYPE html>
@@ -53,5 +66,47 @@ if(empty($_SESSION['login_id'])){
         </div>
     </nav>
 </header>
+<div class="container">
+    <div class="pt-5 text-white">
+        <header class="py-5 mt-5">
+            <h3>
+                <center></center>
+            </h3>
+        </header>
+    </div>
+</div>
+<!--Formulario de Transferencias-->
+<center>
+    <form method="post" action="../resources/php/transfer.php" id="removeaddmoney" name="removeaddmoney" style="width: 59%; text-align: center">
+        <div class="row">
+            <div class="col-md-12 form-group">
+                <p>Seleccione cuenta de origen:</p>
+                <?php
+                $sql="SELECT Account_Num, Nombre FROM cuentasbancarias WHERE Client='$dni'";
+                $result=$db_connection->query($sql);
+                foreach ($result as $valores):
+                    echo '<input type="radio" name="account" id="'.$valores["Account_Num"].'" value="'.$valores["Account_Num"].'" required>&nbsp;&nbsp;<label for="'.$valores["Account_Num"].'">'.$valores["Account_Num"].' - '.$valores["Nombre"].'</label><br>';
+                endforeach;
+                ?>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 form-group">
+                <input type="text" class="form-control" name="money" id="money" placeholder="Importe que desea transferir" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 form-group">
+                <input type="text" class="form-control" name="destinationaccount" id="destinationaccount" placeholder="Cuenta de Destino" required minlength="22" maxlength="22">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <input type="submit" value="Ejecutar Transferencia" class="btn btn-primary rounded-0 py-2 px-4">
+                <span class="submitting"></span>
+            </div>
+        </div>
+    </form>
+</center>
 </body>
 </html>
