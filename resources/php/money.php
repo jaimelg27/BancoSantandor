@@ -19,7 +19,7 @@ if ($selected_process=='save'){
     $resultado = $db_connection->query($sql);
     $datos=$resultado->fetch_array();
     if($datos['Saldo']==null){
-        $sql="UPDATE cuentasbancarias SET saldo = '0' where Account_Num='$selected_account'";
+        $sql="UPDATE cuentasbancarias SET saldo = 0 where Account_Num='$selected_account'";
         $db_connection->query($sql);
     }
     $sql2= "UPDATE cuentasbancarias SET saldo = saldo + '$money' where Account_Num='$selected_account'";
@@ -41,7 +41,7 @@ if ($selected_process=='save'){
     $sql = "SELECT * from cuentasbancarias WHERE Account_Num='$selected_account'";
     $resultado = $db_connection->query($sql);
     $datos=$resultado->fetch_array();
-    if(($datos['Saldo']<=0) and ($datos['Saldo']==null)){?>
+    if(($datos['Saldo']<=0) or ($datos['Saldo']==null)){?>
         <script language="javascript" type="text/javascript">
             alert('Su cuenta se encuentra en numeros rojos o no ha introducido dinero. No puede sacar dinero.');
             window.location = '../../user/money.php';
