@@ -93,7 +93,7 @@ if (!$db_connection) {
         ?>
         <table width="70%" align="center">
             <tr>
-                <td align="center"><b>Numero Cuenta</b></td>
+                <td align="center"><b>Número Cuenta</b></td>
                 <td align="center"><b>Nombre Cuenta</b></td>
                 <td align="center"><b>Saldo</b></td>
             </tr>
@@ -122,16 +122,49 @@ if (!$db_connection) {
         </table>
         <hr>
         <p class="lead mb-0">Sus tarjetas:</p>
-        <form action="">
-            <input type="button" value="Solicitar nueva tarjeta" class="btn btn-primary rounded-0 py-2 px-4"
+        <form action="create-cc.php">
+            <input type="submit" value="Solicitar nueva tarjeta" class="btn btn-primary rounded-0 py-2 px-4"
                    style="float: right;">
         </form>
+        <?php
+        $sql = "SELECT * from tarjetasbancarias WHERE Client='$dni'";
+        $resultado3 = $db_connection->query($sql);
+        ?>
+        <table width="70%" align="center">
+            <tr>
+                <td align="center"><b>Número Tarjeta</b></td>
+                <td align="center"><b>Nombre Tarjeta</b></td>
+                <td align="center"><b>Cuenta Asignada</b></td>
+            </tr>
+            <?php
+            while ($datos3 = $resultado3->fetch_array()) {
+                ?>
+                <tr>
+                    <td align="center"><b><?php echo $datos3["Tarjeta_Num"] ?></b></td>
+                    <td align="center"><?php echo $datos3["Nombre"] ?></td>
+                    <td align="center"><?php echo $datos3["Account_Num"] ?></td>
+                </tr>
+                <?php
+            }
+            ?>
+        </table>
         <hr>
-        <p class="lead mb-0">Sus prestamos:</p>
+        <p class="lead mb-0">Sus préstamos:</p>
         <form action="">
-            <input type="button" value="Solicitar prestamo" class="btn btn-primary rounded-0 py-2 px-4"
+            <input type="button" value="Solicitar Préstamo" class="btn btn-primary rounded-0 py-2 px-4"
                    style="float: right;">
         </form>
+        <table width="70%" align="center">
+            <tr>
+                <td align="center"><b>Número Préstamo</b></td>
+                <td align="center"><b>Razón Préstamo</b></td>
+                <td align="center"><b>Pendiente Pago</b></td>
+                <td align="center"><b>Total Préstamo</b></td>
+            </tr>
+            <tr>
+                <td colspan="4" align="center">No hay préstamos solicitados.</td>
+            </tr>
+        </table>
     </div>
 </div>
 <footer class="social-footer">
