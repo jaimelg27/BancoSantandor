@@ -89,7 +89,7 @@ if (!$db_connection) {
         </div>
         <div class="row">
             <div class="col-md-12 form-group">
-                <input type="text" class="form-control" name="money" id="money" placeholder="Dinero que desea sacar o ingresar." required>
+                <input type="number" class="form-control" name="money" id="money" placeholder="Dinero que desea sacar o ingresar." required min="0">
             </div>
         </div>
         <div class="row">
