@@ -2,7 +2,7 @@
 
 $db_host = "db5002502322.hosting-data.io:3306";
 $db_user = "dbu431085";
-$db_password = "Hormiga2015*";
+$db_password = "BancoSantandor";
 $db_name = "dbs1991557";
 $db_table_name = "clientes";
 $db_connection = mysqli_connect($db_host, $db_user, $db_password, $db_name);
