@@ -10,9 +10,9 @@ $body_message = 'De: '.$field_name."\n";
 $body_message .= 'Correo Electronico: '.$field_email."\n";
 $body_message .= 'Mensaje: '.$field_message;
 
-$headers = "From: no-reply@bancosantandor.jaimelopez.es\r\n";
+$headers = "From: no-reply@bancosantandor.jaimeslopez.es\r\n";
 $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-$headers .= "Reply to: contacto@bancosantandor.jaimelopez.es\r\n";
+$headers .= "Reply to:".$field_email."\r\n";
 
 $mail_status = mail($mail_to, $subject, $body_message, $headers);
 
