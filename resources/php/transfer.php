@@ -18,13 +18,21 @@ $destination_account = $_POST['destinationaccount'];
 $sql0 = "SELECT * from cuentasbancarias WHERE Account_Num='$selected_account'";
 $resultado0 = $db_connection->query($sql0);
 $datos0 = $resultado0->fetch_array();
-if (($datos0['Saldo'] <= 0) or ($datos0['Saldo'] == null)) {
+if (($datos0['Saldo'] <= 0) or ($datos0['Saldo'] == null) or ($datos0['Saldo']-$money<=0)) {
     ?>
     <script language="javascript" type="text/javascript">
-        alert('Su cuenta se encuentra en numeros rojos o no ha introducido dinero. No puede realizar transferencias.');
+        alert('Su cuenta se encuentra en numeros rojos, no ha introducido dinero o no dispone del dinero suficiente. No puede realizar transferencias.');
         window.location = '../../user/transfer.php';
     </script>
 <?php }
+else if ($selected_account==$destination_account){
+    ?>
+    <script language="javascript" type="text/javascript">
+        alert('No puede realizar transferencia a la misma cuenta de origen.');
+        window.location = '../../user/transfer.php';
+    </script>
+    <?php
+}
 //Si es valida procedemos a la transferencia
 else {
     $sql1="SELECT * from cuentasbancarias WHERE Account_Num='$destination_account'";
