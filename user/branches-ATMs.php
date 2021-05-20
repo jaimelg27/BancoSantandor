@@ -47,7 +47,7 @@ if(empty($_SESSION['login_id'])){
                     </li>
                     <li class="nav-item"><a href="contact.php" class="nav-link text-uppercase font-weight-bold">Contacto</a>
                     </li>
-                    <li class="nav-item"><a href="register.html" class="nav-link text-uppercase font-weight-bold">Cerrar Sesión</a>
+                    <li class="nav-item"><a href="../resources/php/logout.php" class="nav-link text-uppercase font-weight-bold">Cerrar Sesión</a>
                     </li>
                 </ul>
             </div>
