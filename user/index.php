@@ -98,25 +98,33 @@ if (!$db_connection) {
                 <td align="center"><b>Saldo</b></td>
             </tr>
             <?php
-            while ($datos = $resultado2->fetch_array()) {
+            if (mysqli_num_rows($resultado2) == 0) {
                 ?>
                 <tr>
-                    <td align="center"><b><?php echo $datos["Account_Num"] ?></b></td>
-                    <td align="center"><?php echo $datos["Nombre"] ?></td>
-                    <?php if ($datos["Saldo"] == null) {
-                        echo '<td align="center">No hay dinero</td>';
-                    } else {
-                        $money = $datos["Saldo"];
-                        $number = (string)$money;
-                        $format_number = str_replace('.', ',', $number);
-                        if ($datos["Saldo"] < 0) {
-                            echo '<td align="center" style="color: red">' . $format_number . " €" . '</td>';
-                        } else {
-                            echo '<td align="center">' . $format_number . " €" . '</td>';
-                        }
-                    } ?>
+                    <td align="center" colspan="3">No dispone de ninguna cuenta bancaria.</td>
                 </tr>
                 <?php
+            } else {
+                while ($datos = $resultado2->fetch_array()) {
+                    ?>
+                    <tr>
+                        <td align="center"><b><?php echo $datos["Account_Num"] ?></b></td>
+                        <td align="center"><?php echo $datos["Nombre"] ?></td>
+                        <?php if ($datos["Saldo"] == null) {
+                            echo '<td align="center">No hay dinero</td>';
+                        } else {
+                            $money = $datos["Saldo"];
+                            $number = (string)$money;
+                            $format_number = str_replace('.', ',', $number);
+                            if ($datos["Saldo"] < 0) {
+                                echo '<td align="center" style="color: red">' . $format_number . " €" . '</td>';
+                            } else {
+                                echo '<td align="center">' . $format_number . " €" . '</td>';
+                            }
+                        } ?>
+                    </tr>
+                    <?php
+                }
             }
             ?>
         </table>
@@ -137,14 +145,22 @@ if (!$db_connection) {
                 <td align="center"><b>Cuenta Asignada</b></td>
             </tr>
             <?php
-            while ($datos3 = $resultado3->fetch_array()) {
+            if (mysqli_num_rows($resultado3) == 0) {
                 ?>
                 <tr>
-                    <td align="center"><b><?php echo $datos3["Tarjeta_Num"] ?></b></td>
-                    <td align="center"><?php echo $datos3["Nombre"] ?></td>
-                    <td align="center"><?php echo $datos3["Account_Num"] ?></td>
+                    <td align="center" colspan="3">No dispone de ninguna tarjeta</td>
                 </tr>
                 <?php
+            } else {
+                while ($datos3 = $resultado3->fetch_array()) {
+                    ?>
+                    <tr>
+                        <td align="center"><b><?php echo $datos3["Tarjeta_Num"] ?></b></td>
+                        <td align="center"><?php echo $datos3["Nombre"] ?></td>
+                        <td align="center"><?php echo $datos3["Account_Num"] ?></td>
+                    </tr>
+                    <?php
+                }
             }
             ?>
         </table>
